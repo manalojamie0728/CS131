@@ -19,6 +19,7 @@ for i = 1:N
   endif
 end
 
-disp(norm(K-chol(K)));
+x = chol(K)\W;
+disp(x);
 
 #plot(zeros(15,1),3-cumsum(x),'bs')
