@@ -18,3 +18,7 @@ for i = 1:N
     K(i, i) = K(i, i) + k(i+1);
   endif
 end
+
+disp(K\W);
+
+#plot(zeros(15,1),3-cumsum(x),'bs')
