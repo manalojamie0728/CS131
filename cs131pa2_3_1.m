@@ -18,3 +18,10 @@ for i = 1:N
     K(i, i) = K(i, i) + k(i+1);
   endif
 end
+
+x = zeros(15,1);
+for i = 1:N
+  x(i) = K(i, i)\(W(i,1) - K(i,1:i-1)*x(1:i-1) - K(i,i+1:N)*x(i+1:N));
+  #x(i) = K(i, i)\(W(i,1) - (K(i,:)*x(:) - K(i, i)*x(i)));
+end
+disp(x);
