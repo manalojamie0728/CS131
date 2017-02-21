@@ -2,6 +2,7 @@
 # Programming Exercise 2.1: The Composer
 
 A = magic(5);
+#A = [3, 9, 0, -3; 0, 1, 0, 3; 2, 6, 4, -2; 0, 3, 0, 11];
 
 U = A;
 L = eye(size(A));

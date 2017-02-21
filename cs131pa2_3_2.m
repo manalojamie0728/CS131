@@ -19,6 +19,6 @@ for i = 1:N
   endif
 end
 
-disp(K\W);
+disp(norm(K-chol(K)));
 
 #plot(zeros(15,1),3-cumsum(x),'bs')
