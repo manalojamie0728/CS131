@@ -19,7 +19,19 @@ for i = 1:N
   endif
 end
 
-x = chol(K)\W;
-disp(x);
+for i = 1:N
+  if (i > 1)
+    K(i:N,i:N) = K(i:N,i:N) - K(i:N,i-1)*K(i:N,i-1)';
+  endif
+  if (K(i, i) < 0)
+    K(i, i) = K(i, i)*-1;
+  endif
+  K(i, i) = sqrt(K(i, i));
+  K(i+1:N,i) = K(i+1:N,i)/K(i, i);
+  K(i,i+1:N) = 0;
+end
 
-#plot(zeros(15,1),3-cumsum(x),'bs')
+#disp(K);
+
+x = (K*K')\W;
+plot(zeros(15,1),3-x,'bs')

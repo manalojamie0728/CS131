@@ -19,9 +19,21 @@ for i = 1:N
   endif
 end
 
-x = zeros(15,1);
-for i = 1:N
-  x(i) = K(i, i)\(W(i,1) - K(i,1:i-1)*x(1:i-1) - K(i,i+1:N)*x(i+1:N));
-  #x(i) = K(i, i)\(W(i,1) - (K(i,:)*x(:) - K(i, i)*x(i)));
+#disp(K);
+
+x(1:15,1) = 0;
+
+while (norm(W-K*x) > 1e-11)
+  for i = 1:N
+    #x(i) = K(i, i)\(W(i) - (K(i,:)*x - K(i, i)*x(i)));
+    x(i) = K(i, i)\(W(i) - K(i,1:i-1)*x(1:i-1) - K(i,i+1:N)*x(i+1:N));
+  end
 end
-plot(zeros(15,1),3-cumsum(x),'rs')
+disp(x);
+  
+#for i = 1:N
+#  x(i) = K(i, i)\(W(i,1) - K(i,1:i-1)*x(1:i-1) - K(i,i+1:N)*x(i+1:N));
+  #x(i) = K(i, i)\(W(i,1) - (K(i,:)*x(:) - K(i, i)*x(i)));
+#end
+#disp(x);
+plot(zeros(15,1),3-x,'rs')
